@@ -11,7 +11,8 @@ const commentsByPostId = {}
 const route = "/posts/:id/comments"
 
 app.get(route, (req, res) => {
-    res.send(commentsByPostId[req.params.id]);
+    const comments = commentsByPostId[req.params.id] || []
+    res.send(comments);
 });
 
 app.post(route, (req, res) => { 
