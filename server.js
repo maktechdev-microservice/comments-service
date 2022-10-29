@@ -21,7 +21,7 @@ app.post(route, async (req, res) => {
 
     const { content } = req.body;
     const id = randomBytes(4).toString('hex');
-    const newComment = { id, content }
+    const newComment = { id, content, status: 'pending' }
     const comments = commentsByPostId[req.params.id] || [];
     comments.push(newComment)
     commentsByPostId[req.params.id] = comments
@@ -30,7 +30,8 @@ app.post(route, async (req, res) => {
         data: {
             id,
             content,
-            postId: req.params.id
+            postId: req.params.id,
+            status: 'pending'
         }
     }).catch(err => {
         console.log(`comment reports: ${err}`)
