@@ -25,7 +25,7 @@ app.post(route, async (req, res) => {
     const comments = commentsByPostId[req.params.id] || [];
     comments.push(newComment)
     commentsByPostId[req.params.id] = comments
-    await axios.post("http://localhost:4005/events", {
+    await axios.post("http://events-clusterip-srv:4005/events", {
         type: "CommentCreated",
         data: {
             id,
